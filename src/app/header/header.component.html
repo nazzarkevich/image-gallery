@@ -1,13 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
-<a class="navbar-brand" href="#">ImageGallery</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<div class="container">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link" style="cursor: pointer;">Albums</a>
+      <a
+        routerLink="/gallery"
+        class="navbar-brand"
+        style="cursor: pointer;"><img src="https://image.flaticon.com/icons/png/512/390/390901.png" alt="" width="30" height="30"></a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/gallery" class="nav-link" style="cursor: pointer;">Gallery</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/upload" class="nav-link" style="cursor: pointer;">Upload</a>
     </li>
   </ul>
 </div>
