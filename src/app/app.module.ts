@@ -17,9 +17,14 @@ import { UploadService } from './services/upload.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireDatabase } from 'angularfire2/database';
+
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { imageReducer } from './image-detail/store/image.reducers';
+import { EventEffects } from './image-detail/store/image.effects';
 
 import { appRoutes } from '../routes';
 
@@ -40,9 +45,11 @@ import { appRoutes } from '../routes';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    StoreModule.forRoot(imageReducer),
+    EffectsModule.forRoot([EventEffects])
   ],
-  providers: [ImageService, UploadService],
+  providers: [ImageService, UploadService, AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

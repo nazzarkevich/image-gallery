@@ -1,2 +1,7 @@
-<label for="file">File:</label>
-<input type="file" (change)="upload($event)" accept=".png,.jpg" />
+<h1>IMAGES</h1>
+
+<div *ngFor="let image of images | async">
+  <p>URL - {{image.url}}</p>
+</div>
+
+<button (click)="addImage()">Add image</button>
