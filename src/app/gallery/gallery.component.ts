@@ -12,16 +12,13 @@ import * as Actions from '../image-detail/store/image.actions';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-  // images: Observable<Image[]>;
   images: Observable<Image[]>;
 
-  constructor(private imageService: ImageService,
-              private store: Store<imageReducer.State>) { }
+  constructor(private store: Store<imageReducer.AppState>) { }
 
   ngOnInit() {
     this.store.dispatch(new Actions.GetImages());
-    this.images = this.store.select(state => state.images);
-    console.log(this.images);
+    this.images = this.store.select(state => state.mainState.images);
   }
 
 }

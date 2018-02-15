@@ -1,6 +1,10 @@
 import * as ImageActions from './image.actions';
 import { Image } from '../../shared/image.model';
 
+export interface AppState {
+  mainState: State;
+}
+
 export interface State {
   loading: boolean;
   images: Image[];
