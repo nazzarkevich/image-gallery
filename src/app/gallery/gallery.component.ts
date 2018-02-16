@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../services/image.service';
 import { Observable } from 'rxjs/Observable';
-import { Image } from '../shared/image.model';
+import { Image } from '../models/image.model';
 import { Store } from '@ngrx/store';
-import * as imageReducer from '../image-detail/store/image.reducers';
-import * as Actions from '../image-detail/store/image.actions';
+import * as fromReducer from '../image-detail/store/reducers/image.reducer';
+import * as fromActions from '../image-detail/store/actions/image.actions';
+import { AppState } from '../states/app.states';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-gallery',
@@ -12,13 +14,21 @@ import * as Actions from '../image-detail/store/image.actions';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-  images: Observable<Image[]>;
+  allImages$: Observable<Image[]>;
+  private basePath = '/uploads';
 
-  constructor(private store: Store<imageReducer.AppState>) { }
+  constructor(private store: Store<AppState>,
+              private imageService: ImageService) { }
 
   ngOnInit() {
-    this.store.dispatch(new Actions.GetImages());
-    this.images = this.store.select(state => state.mainState.images);
+    this.allImages$ = this.store.select(fromReducer.selectAllImages);
+    this.store.dispatch(new fromActions.LoadAllImages());
+  }
+
+  removeImage(imageId: string, key: string) {
+    this.store.dispatch(new fromActions.RemoveImage({ id: imageId }));
+    const storageRef = firebase.storage().ref();
+    storageRef.child(`${this.basePath}/${key}`).delete();
   }
 
 }

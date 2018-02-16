@@ -1,10 +1,10 @@
-<p>Gallery</p>
-<div class="card-columns">
-  <div *ngFor="let image of (images | async)">
+<div class="card-columns" style="padding-top: 2em;">
+  <div *ngFor="let image of allImages$ | async">
     <div class="card">
-      <a [routerLink]="['image', image.$key]">
-        <img src="{{ image.url }}" height="200" width="200" class="card-img">
+      <a [routerLink]="['/image', image.id]">
+        <img src="{{ image.url }}" style="width:100%" class="card-img">
       </a>
     </div>
+    <button class="btn btn-danger"(click)="removeImage(image.id, image.name)">Delete</button>
   </div>
 </div>

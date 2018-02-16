@@ -24,8 +24,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { imageReducer } from './image-detail/store/image.reducers';
-import { EventEffects } from './image-detail/store/image.effects';
+import { reducers, metaReducers } from './image-detail/store/reducers';
+import { ImageEffects } from './image-detail/store/effects/image.effects';
 
 import { appRoutes } from '../routes';
 
@@ -47,8 +47,8 @@ import { appRoutes } from '../routes';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    StoreModule.forRoot({mainState: imageReducer}),
-    EffectsModule.forRoot([EventEffects]),
+    StoreModule.forRoot(reducers, {metaReducers}),
+    EffectsModule.forRoot([ImageEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     })
