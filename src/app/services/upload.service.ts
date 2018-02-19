@@ -49,10 +49,20 @@ export class UploadService {
   }
 
   private saveFileData(upload: Upload) {
-    this.db.list<Image>(`${this.basePath}/`).push(upload);
+    let key = '';
+    this.db.list<Image>(`${this.basePath}/`).push(upload).on('value', function(snapshot) {
+      key = snapshot.key;
+    });
+    this.setKey(key);
   }
 
-  private deleteFileData(key: string) {
+  private setKey(key: string) {
+    firebase.database().ref('uploads/' + key).update({
+      id: key
+    });
+  }
+
+  deleteFileData(key: string) {
     return this.db.list(`${this.basePath}/`).remove(key);
   }
 
