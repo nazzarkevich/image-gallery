@@ -1,4 +1,4 @@
-<div class="card-columns" style="padding-top: 2em;">
+<!--<div class="card-columns" style="padding-top: 2em;">
   <div *ngFor="let image of allImages$ | async">
     <div class="card">
       <a [routerLink]="['/image', image.id]">
@@ -8,3 +8,14 @@
     <button class="btn btn-danger"(click)="removeImage(image.id)">Delete</button>
   </div>
 </div>
+-->
+<section class="flexboxContainer">
+  <div *ngFor="let image of allImages$ | async" class="item">
+    <a [routerLink]="['/image', image.id]" style="cursor: zoom-in;">
+      <img src="{{ image.url }}" class="image">
+    </a>
+    <div class="middle">
+      <button class="btn btn-outline-dark" (click)="removeImage(image.id)"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+</section>

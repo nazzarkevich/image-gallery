@@ -1,0 +1,39 @@
+.footer-info p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.footer-info {
+    text-align: center;
+    padding: 0.5em 0;
+}
+
+.social {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.social ul {
+  margin-top: 1rem;
+}
+
+.social li {
+  display: inline-block;
+  align-items: center;
+}
+
+.social li a {
+  color: #333;
+}
+
+.social li a:hover {
+  color: #D1AB10;
+}
+
+.footer-content {
+  align-items: center;
+}

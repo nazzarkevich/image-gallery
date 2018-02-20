@@ -1,19 +1,23 @@
-<div class="input-group mb-3" style="margin-top: 1em;">
-  <div class="input-group-prepend">
-    <button [disabled]="!files" class="btn btn-outline-warning" (click)="uploadFiles()">Upload Image</button>
+<div class="row justify-content-md-center">
+  <div class="col-md-6">
+    <div class="input-group mb-3" style="margin-top: 1em;">
+      <div class="input-group-prepend">
+        <button [disabled]="!files" class="btn btn-outline-warning" (click)="uploadFiles()">Upload Image</button>
+      </div>
+      <div class="custom-file">
+        <input type="file" (change)="handleFiles($event)" multiple class="custom-file-input" accept=".png,.jpg">
+        <label class="custom-file-label" for="inputGroupFile03">{{ fileName }}</label>
+      </div>
+    </div>
+    <div class="container">
+      <div *ngIf="upload">
+        <div class="progress">
+          <div class="progress-bar progress-bar-animated"
+          [ngStyle]="{ 'width': upload?.progress + '%' }"></div>
+      </div>
+      Progress: {{upload?.progress}}% Complete
+    </div>
   </div>
-  <div class="custom-file">
-    <input type="file" (change)="handleFiles($event)" multiple class="custom-file-input" accept=".png,.jpg">
-    <label class="custom-file-label" for="inputGroupFile03">{{ fileName }}</label>
-  </div>
-</div>
-<div class="container">
-  <div *ngIf="upload">
-    <div class="progress">
-      <div class="progress-bar progress-bar-animated"
-      [ngStyle]="{ 'width': upload?.progress + '%' }"></div>
-  </div>
-  Progress: {{upload?.progress}}% Complete
 </div>
 
 <ng-template #imageUploaded>

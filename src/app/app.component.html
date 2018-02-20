@@ -2,3 +2,18 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+<footer *ngIf="router.url === '/gallery'" class=" footer-info">
+  <hr>
+  <section class="social">
+    <div class="footer-content">
+      <p>Copyright © 2018</p>
+    </div>
+    <div class="social-icons">
+      <ul>
+        <li><a href="https://github.com/nazzarkevich"><i class="fab fa-github"></i></a></li>/
+        <li><a href="https://fb.com/nazzrkevich"><i class="fab fa-linkedin"></i></a></li>/
+        <li><a href="https://www.linkedin.com/in/nazar-tkach-9a5312b1/"><i class="fab fa-facebook-square"></i></a></li>
+      </ul>
+    </div>
+  </section>
+</footer>

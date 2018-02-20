@@ -1,0 +1,60 @@
+.flexboxContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex-flow: row wrap;
+  align-content: flex-end;
+  margin-top: 1em;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+}
+
+.item {
+  flex: 0 1 calc(25% - 1em);
+}
+@media screen and (min-width: 25em) {
+    .item {
+      flex: 0 1 calc(80% - 1em);
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .item {
+      flex: 0 1 calc(50% - 1em);
+    }
+}
+
+@media screen and (min-width: 75em) {
+    .item {
+      flex: 0 1 calc(25% - 1em);
+     }
+}
+
+.item:hover img {
+  opacity: 0.8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.item:hover .middle {
+  opacity: 1;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: relative;
+  float: left;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  left:50%;
+}
+
+.middle a {
+  color: #fff;
+}

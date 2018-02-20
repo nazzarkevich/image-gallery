@@ -1,7 +1,6 @@
-<div class="card" style="margin-top: 1em;">
+<button [routerLink]="['/gallery']" class="btn btn-outline-dark"><i class="fas fa-chevron-left"></i></button>
+<button [routerLink]="['/gallery']" class="btn btn-outline-dark" (click)="removeImage()"><i class="fas fa-times"></i></button>
+
+<div class="card">
   <img class="card-img-top" [src]=imageUrl alt="Card image cap">
-  <div class="card-body">
-    <button [routerLink]="['/gallery']" class="btn btn-info"><</button>
-    <button [routerLink]="['/gallery']" class="btn btn-danger" (click)="removeImage()">Delete</button>
-  </div>
 </div>
