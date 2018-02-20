@@ -27,6 +27,7 @@ import { reducers, metaReducers } from './image-detail/store/reducers';
 import { ImageEffects } from './image-detail/store/effects/image.effects';
 
 import { appRoutes } from '../routes';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { appRoutes } from '../routes';
     GalleryComponent,
     HeaderComponent,
     ImageDetailComponent,
-    UploadComponent
+    UploadComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
