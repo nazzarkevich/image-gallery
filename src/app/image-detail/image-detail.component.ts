@@ -6,6 +6,8 @@ import * as fromReducer from './store/reducers/image.reducer';
 import * as fromActions from './store/actions/image.actions';
 import { ImageState } from '../states/app.states';
 import { Image } from '../models/image.model';
+import { ActivatedRoute } from '@angular/router';
+import { AppState } from '../states/app.states';
 
 @Component({
   selector: 'app-image-detail',
@@ -18,33 +20,29 @@ export class ImageDetailComponent implements OnInit {
   imageById$: Observable<Image>;
   imagesIds$: Observable<string[] | number[]>;
   imageId: string;
-  private imageUrl = '';
+  imageUrl = '';
 
   constructor(private imageService: ImageService,
-              private store: Store<ImageState>) { }
+              private store: Store<AppState>,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.allImages$ = this.store.select(fromReducer.selectAllImages);
-    this.imagesIds$ = this.store.select(fromReducer.selectImageIds);
-    this.imageById$ = this.store.select(fromReducer.selectCurrentImage);
-
-    this.store.dispatch(new fromActions.LoadAllImages());
+    this.imageId = this.route.snapshot.params['id'];
+    this.getImageUrl(this.imageId);
   }
 
-  getImageUrl(url: string) {
-
+  getImageUrl(key: string) {
+    this.imageService.getImage(key)
+      .then(image => this.imageUrl = image.url);
   }
 
-  addImage(data: Image) {
-    this.store.dispatch(new fromActions.AddImage({ image: data }));
-  }
+  // addImage(data: Image) {
+  //   this.store.dispatch(new fromActions.AddImage({ image: data }));
+  // }
 
   removeImage(imageId: string) {
-    this.store.dispatch(new fromActions.RemoveImage({ id: imageId }));
-  }
-
-  selectImageById() {
-    this.store.dispatch(new fromActions.SelectImage({ imageId: this.imageId }));
+    this.store.dispatch(new fromActions.RemoveImage({ id: this.imageId }));
+    this.imageService.deleteFileData(this.imageId);
   }
 
 }

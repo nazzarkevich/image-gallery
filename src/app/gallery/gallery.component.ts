@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { Image } from '../models/image.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../states/app.states';
-import { UploadService } from '../services/upload.service';
 import * as fromReducer from '../image-detail/store/reducers/image.reducer';
 import * as fromActions from '../image-detail/store/actions/image.actions';
 import * as firebase from 'firebase';
@@ -19,8 +18,7 @@ export class GalleryComponent implements OnInit {
   private basePath = '/uploads';
 
   constructor(private store: Store<AppState>,
-              private imageService: ImageService,
-              private uploadService: UploadService) { }
+              private imageService: ImageService) { }
 
   ngOnInit() {
     this.allImages$ = this.store.select(fromReducer.selectAllImages);
@@ -29,7 +27,7 @@ export class GalleryComponent implements OnInit {
 
   removeImage(imageId: string, key: string) {
     this.store.dispatch(new fromActions.RemoveImage({ id: imageId }));
-    this.uploadService.deleteFileData(imageId);
+    this.imageService.deleteFileData(imageId);
   }
 
 }

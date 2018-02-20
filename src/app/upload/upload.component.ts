@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UploadService } from '../services/upload.service';
+import { ImageService } from '../services/image.service';
 import { Upload } from '../models/upload.model';
 import * as _ from 'lodash';
 
@@ -12,11 +12,13 @@ export class UploadComponent {
 
   files: FileList;
   upload: Upload;
+  fileName = 'Choose file';
 
-  constructor(private uploadService: UploadService) { }
+  constructor(private imageService: ImageService) { }
 
   handleFiles(event) {
     this.files = event.target.files;
+    this.fileName = this.files[0].name;
   }
 
   uploadFiles() {
@@ -24,7 +26,7 @@ export class UploadComponent {
     const filesIdx = _.range(filesToUpload.length);
     _.each(filesIdx, (idx) => {
       this.upload = new Upload(filesToUpload[idx]);
-      this.uploadService.uploadFile(this.upload);
+      this.imageService.uploadImage(this.upload);
     });
   }
 

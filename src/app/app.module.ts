@@ -12,9 +12,12 @@ import { UploadComponent } from './upload/upload.component';
 import { environment } from '../environments/environment';
 
 import { ImageService } from './services/image.service';
-import { UploadService } from './services/upload.service';
 
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -39,13 +42,17 @@ import { appRoutes } from '../routes';
     HttpModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
     StoreModule.forRoot(reducers, {metaReducers}),
     EffectsModule.forRoot([ImageEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     })
   ],
-  providers: [ImageService, UploadService, AngularFireDatabase],
+  providers: [ImageService, AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
